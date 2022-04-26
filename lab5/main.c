@@ -30,7 +30,7 @@ char* func(char* a, char* b) {
     int b_amount = 0;
     while(*(a+a_amount)) a_amount++;
     while(*(b+b_amount)) b_amount++;
-    char* p = (char*)calloc(a_amount+b_amount, sizeof(char) );
+    char* p = (char*)calloc(a_amount+b_amount, sizeof(char));
     for(int i=0; i<a_amount; i++) {
         p[i] = *a++;
     }
