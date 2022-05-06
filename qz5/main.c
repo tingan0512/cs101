@@ -7,19 +7,47 @@ typedef struct node {
 } node_t;
 
 node_t* allocate_node(int data) {
-    return (node_t*)calloc(1, sizeof(data));
+    node_t *newNode = malloc(sizeof(node_t));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
 }
 
 void show_list(node_t* list) {
-    
+    node_t* tmp = list;
+    while(tmp != NULL) {
+        printf("[%d]->", tmp->data);
+        tmp = tmp->next;
+    }
+    printf("NULL\n");
 }
 
 node_t* append_node(node_t* list, int new_data) {
-    
+    node_t* newNode = allocate_node(new_data);
+    newNode->data = new_data;
+    newNode->next     = NULL;
+    if(list == NULL)
+         list = newNode;
+    else
+    {
+        node_t* lastNode = list;
+        while(lastNode->next != NULL)
+        {
+            lastNode = lastNode->next;
+        }
+        lastNode->next = newNode;
+    }
+    return list;
 }
 
 void free_all_node(node_t* list) {
-    
+    while (list != NULL){ 
+        node_t* temp = list; 
+        list = list -> next;
+        printf("free([%d])->",temp->data);
+        free(temp);
+    }
+    printf("NULL");
 }
 
 int main() {
